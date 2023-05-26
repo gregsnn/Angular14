@@ -36,6 +36,7 @@ export class CriarPensamentosComponent implements OnInit {
         ]),
       ],
       modelo: ['modelo2'],
+      favorito: [false],
     });
   }
 

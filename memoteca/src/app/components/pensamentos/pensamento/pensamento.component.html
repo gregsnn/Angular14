@@ -10,6 +10,12 @@
   </p>
 
   <div class="acoes">
+    <button class="botao-favorito" (click)="changeFavStatus()">
+      <img
+        src="../../../../assets/img/icone-favorito-{{ favImage() }}.png"
+        alt="imagem de favorito {{ favImage() }}"
+      />
+    </button>
     <button
       class="botao-editar"
       routerLink="/pensamentos/editarPensamento/{{ pensamento.id }}"
