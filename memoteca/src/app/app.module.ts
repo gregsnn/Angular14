@@ -11,6 +11,7 @@ import { RodapeComponent } from './components/rodape/rodape.component';
 import { PensamentoComponent } from './components/pensamentos/pensamento/pensamento.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EditarPensamentoComponent } from './components/pensamentos/editar-pensamento/editar-pensamento.component';
+import { BotaoCarregarMaisComponent } from './components/pensamentos/listar-pensamentos/botao-carregar-mais/botao-carregar-mais.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { EditarPensamentoComponent } from './components/pensamentos/editar-pensa
     ListarPensamentosComponent,
     PensamentoComponent,
     EditarPensamentoComponent,
+    BotaoCarregarMaisComponent,
   ],
   imports: [
     BrowserModule,
