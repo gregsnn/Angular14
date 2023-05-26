@@ -1,0 +1,115 @@
+<section class="container criar-pensamentos ff-inter">
+  <header class="header">
+    <h2>Adicione um Pensamento Novo</h2>
+  </header>
+
+  <form [formGroup]="formulario">
+    <label class="label-coluna">
+      Pensamento:
+      <input
+        type="textarea"
+        formControlName="conteudo"
+        id="pensamento"
+        class="input"
+        placeholder="Digite o pensamento"
+      />
+    </label>
+
+    <label class="label-coluna">
+      Autoria ou Fonte:
+      <input
+        type="text"
+        formControlName="autoria"
+        id="autoria"
+        class="input"
+        placeholder="Digite a autoria ou fonte"
+      />
+    </label>
+
+    <label>
+      Selecione o Modelo do Card:
+
+      <div class="container-radio">
+        <div class="radio-modelo">
+          <label>
+            <input
+              type="radio"
+              id="modelo1"
+              value="modelo1"
+              formControlName="modelo"
+            />
+
+            <div class="custom-radio">
+              <span></span>
+            </div>
+            <span>Modelo 1</span>
+          </label>
+
+          Prévia:
+          <div class="modelo modelo1 ff-roboto-mono">
+            <img src="../../../../assets/img/modelo1.png" alt="Aspas azuis" />
+            <p class="conteudo">{{ formulario.get("conteudo")?.value }}</p>
+            <p class="autoria">
+              <strong>{{ formulario.get("autoria")?.value }}</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="radio-modelo">
+          <label>
+            <input
+              type="radio"
+              id="modelo2"
+              value="modelo2"
+              formControlName="modelo"
+            />
+
+            <div class="custom-radio">
+              <span></span>
+            </div>
+            <span>Modelo 2</span>
+          </label>
+
+          Prévia:
+          <div class="modelo modelo2 ff-roboto-mono">
+            <img src="../../../../assets/img/modelo2.png" alt="Aspas ciano" />
+            <p class="conteudo">{{ formulario.get("conteudo")?.value }}</p>
+            <p class="autoria">
+              <strong>{{ formulario.get("autoria")?.value }}</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="radio-modelo">
+          <label>
+            <input
+              type="radio"
+              id="modelo3"
+              value="modelo3"
+              formControlName="modelo"
+            />
+
+            <div class="custom-radio">
+              <span></span>
+            </div>
+            <span>Modelo 3</span>
+          </label>
+
+          Prévia:
+          <div class="modelo modelo3 ff-roboto-mono">
+            <img src="../../../../assets/img/modelo3.png" alt="Aspas verdes" />
+            <p class="conteudo">{{ formulario.get("conteudo")?.value }}</p>
+            <p class="autoria">
+              <strong>{{ formulario.get("autoria")?.value }}</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acoes">
+        <button (click)="criar()" class="botao">Salvar</button>
+        <button (click)="cancelar()" class="botao">Cancelar</button>
+      </div>
+    </label>
+  </form>
+</section>
