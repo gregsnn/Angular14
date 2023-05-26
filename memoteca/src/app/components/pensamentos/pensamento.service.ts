@@ -14,10 +14,14 @@ export class PensamentoService {
     return `${this.API}/${id}`;
   }
 
-  list(pagina: number): Observable<Pensamento[]> {
-    const params = new HttpParams()
+  list(pagina: number, filtro: string): Observable<Pensamento[]> {
+    let params = new HttpParams()
       .set('_page', pagina)
       .set('_limit', this.ITENS_POR_PAGINA);
+
+    if (filtro && filtro?.trim().length > 2) {
+      params = params.set('q', filtro);
+    }
 
     return this.http.get<Pensamento[]>(this.API, { params });
   }
