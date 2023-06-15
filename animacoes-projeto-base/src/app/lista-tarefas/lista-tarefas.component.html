@@ -4,15 +4,15 @@
       Criar nova tarefa
     </button>
   </div>
-  <form class="formulario ff-prompt"
-    [formGroup]="formulario"
-    *ngIf="formAberto">
+  <form *ngIf="formAberto" @showState
+        [formGroup]="formulario"
+        class="formulario ff-prompt">
     <label for="descricao">Descrição da tarefa</label>
     <input required
-      type="text"
-      formControlName="descricao"
-      placeholder="Digite a tarefa"
-      [ngClass]="campoValidado('descricao')"
+           type="text"
+           formControlName="descricao"
+           placeholder="Digite a tarefa"
+           [ngClass]="campoValidado('descricao')"
     >
     <app-mensagem
       *ngIf="!validado"
@@ -20,8 +20,8 @@
     </app-mensagem>
     <label for="prioridade">Prioridade</label>
     <select required
-      formControlName="prioridade"
-      [ngClass]="campoValidado('prioridade')"
+            formControlName="prioridade"
+            [ngClass]="campoValidado('prioridade')"
     >
       <option disabled value="">Selecione</option>
       <option value="Alta">Alta</option>
@@ -34,8 +34,8 @@
     </app-mensagem>
     <label for="categoria">Categoria</label>
     <select required
-      formControlName="categoria"
-      [ngClass]="campoValidado('categoria')"
+            formControlName="categoria"
+            [ngClass]="campoValidado('categoria')"
     >
       <option disabled value="">Selecione</option>
       <option value="Casa">Casa</option>
@@ -52,12 +52,12 @@
         class="botao-form"
         [ngClass]="habilitarBotao()"
         [disabled]="!formulario.valid">
-          Salvar
+        Salvar
       </button>
       <button
         (click)="cancelar()"
         class="botao-form botao-cancelar">
-          Cancelar
+        Cancelar
       </button>
     </div>
   </form>
@@ -66,26 +66,30 @@
   <div class="ilustracao" *ngIf="!formAberto">
     <h2>Suas tarefas</h2>
     <img src="assets/imagens/ilustracao-Tarefas.png"
-        alt="Ilustração de um ambiente com mesa, computador, quadro e um vaso com planta">
+         alt="Ilustração de um ambiente com mesa, computador, quadro e um vaso com planta">
   </div>
   <div *ngIf="listaTarefas.length > 0, else semTarefas">
     <div
-      class="lista-tarefas card-{{ tarefa.categoria }}"
-      *ngFor="let tarefa of listaTarefas">
+      *ngFor="let tarefa of listaTarefas; let i = index"
+      (mouseover)="indexTarefa = i"
+      [@highlightedState]="indexTarefa === i ? 'highlighted' : 'default'"
+      class="lista-tarefas card-{{ tarefa.categoria }}">
       <div class="info-card">
         <p class="categoria-tarefa categoria-{{ tarefa.categoria }}">
           <img
             src="assets/icones/{{ tarefa.categoria }}.png"
             alt="Ícone de {{ tarefa.categoria }}">
-              {{ tarefa.categoria }}
+          {{ tarefa.categoria }}
         </p>
         <p class="prioridade-tarefa prioridade-{{ tarefa.prioridade }}">
           {{ tarefa.prioridade }}
         </p>
         <p class="status-tarefa">
           <button
-            [ngClass]="(tarefa.statusFinalizado == true) ? 'icone-checked' : 'icone-unchecked'"
-            (click)="finalizarTarefa(tarefa.id);">
+            [@buttonBounceState]="idBotao === tarefa.id ? 'bounce' : 'unbounce'"
+            [ngClass]="tarefa.statusFinalizado ? 'icone-checked' : 'icone-unchecked'"
+            (click)="finalizarTarefa(tarefa.id); idBotao = tarefa.id"
+          >
           </button>
         </p>
       </div>
@@ -93,7 +97,7 @@
         <p
           class="card-descricao ff-prompt
           card-{{ tarefa.statusFinalizado ? 'Feito' : '' }}">
-            {{ tarefa.descricao }}
+          {{ tarefa.descricao }}
         </p>
         <div class="botoes-card">
           <button
